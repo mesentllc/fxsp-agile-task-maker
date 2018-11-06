@@ -38,9 +38,7 @@ public abstract class TaskReport {
 	protected static final StyleBuilder bold10Style = DynamicReports.stl.style(Templates.boldStyle).setFontSize(10)
 			.setTextAlignment(HorizontalTextAlignment.LEFT, VerticalTextAlignment.TOP)
 			.setForegroundColor(Color.BLACK);
-	protected static final StyleBuilder norm20Style = DynamicReports.stl.style(styleBuilders.style()).setFontSize(20)
-	                                                                    .setTextAlignment(HorizontalTextAlignment.CENTER, VerticalTextAlignment.TOP).setPadding(2)
-	                                                                    .setForegroundColor(Color.BLACK);
+
 	protected static final Color COLOR_ORANGE = new Color(205, 110, 0);
 	protected static final Color COLOR_PURPLE = new Color(102, 0, 153);
 	protected static final Color COLOR_GOLD = new Color(255, 208, 0);

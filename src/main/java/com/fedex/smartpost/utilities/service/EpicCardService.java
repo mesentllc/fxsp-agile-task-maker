@@ -1,11 +1,16 @@
 package com.fedex.smartpost.utilities.service;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.fedex.smartpost.utilities.model.TaskModel;
 import com.fedex.smartpost.utilities.report.EpicTaskCreator;
@@ -23,10 +28,16 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class EpicCardService extends CardService {
 	private static final Log log = LogFactory.getLog(EpicCardService.class);
+	private static final Color[] COLORS = {Color.RED, new Color(255,128,0), new Color(102, 102, 0),
+		new Color(128,255,0), new Color(0,255,0), new Color(0,255,128), new Color(0,255,255),
+		new Color(0,128,255), new Color(0,0,255), new Color(127,0,255), new Color(255, 0, 255),
+		new Color(255,0,127), new Color(128,128,128)};
 
 	@Override
 	public void process(String inFile, String outFile) throws IOException, InvalidFormatException, DRException {
 		List<TaskModel> cards = new ArrayList<>();
+		Map<String, Integer> colorSet = new HashMap<>();
+
 		Workbook wb;
 		wb = WorkbookFactory.create(new File(inFile));
 		Sheet sheet = wb.getSheetAt(0);
@@ -37,6 +48,8 @@ public class EpicCardService extends CardService {
 			else {
 				TaskModel taskModel = getEpic(row);
 				cards.add(taskModel);
+				addToMap(colorSet, taskModel.getEpic());
+				setTaskColor(taskModel, colorSet);
 			}
 		}
 		Collections.sort(cards);
@@ -52,6 +65,23 @@ public class EpicCardService extends CardService {
 		}
 		else {
 			report.print();
+		}
+	}
+
+	private void addToMap(Map<String, Integer> colorSet, String epic) {
+		if (colorSet.get(epic) != null) {
+			return;
+		}
+		colorSet.put(epic, colorSet.size());
+	}
+
+	private void setTaskColor(TaskModel taskModel, Map<String, Integer> colorSet) {
+		int pntr = colorSet.get(taskModel.getEpic());
+		if (pntr < COLORS.length) {
+			taskModel.setColor(COLORS[pntr]);
+		}
+		else {
+			taskModel.setColor(Color.BLACK);
 		}
 	}
 

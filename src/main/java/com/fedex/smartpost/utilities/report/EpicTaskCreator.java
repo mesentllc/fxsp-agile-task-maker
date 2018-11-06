@@ -2,7 +2,10 @@ package com.fedex.smartpost.utilities.report;
 
 import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
 
+import java.awt.Color;
+
 import com.fedex.smartpost.utilities.model.TaskModel;
+import net.sf.dynamicreports.report.builder.DynamicReports;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
 import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.dynamicreports.report.constant.HorizontalTextAlignment;
@@ -11,6 +14,14 @@ import net.sf.dynamicreports.report.constant.VerticalTextAlignment;
 public class EpicTaskCreator extends TaskReport {
 	private static final StyleBuilder lineStyle = styleBuilders.style(styleBuilders.pen1Point()).bold().setFontSize(7);
 	private static final Integer headerWidth = cardWidth * 6 / 10;
+
+	private StyleBuilder norm20Style(Color color) {
+		if (color == null) {
+			color = Color.BLACK;
+		}
+		return DynamicReports.stl.style(styleBuilders.style()).setFontSize(20)
+		                         .setTextAlignment(HorizontalTextAlignment.CENTER, VerticalTextAlignment.TOP).setPadding(2).setForegroundColor(color);
+	}
 
 	private ComponentBuilder<?, ?> buildLine1(TaskModel taskModel) {
 		return cmp.horizontalList(cmp.text(getString(taskModel.getEpic())).setStyle(bold7Style).setFixedWidth(headerWidth),
@@ -30,7 +41,8 @@ public class EpicTaskCreator extends TaskReport {
 		return cmp.horizontalList(cmp.text("User Story: " + getString(taskModel.getUserStoryTitle())).setStyle(bold7Style)
 						.setStyle(lineStyle).setFixedWidth(headerWidth),
 				cmp.horizontalList(cmp.text("Id:\n" + getString(taskModel.getUserStoryId())).setStyle(bold7Style),
-						cmp.verticalList(cmp.text("Points:").setStyle(bold7Style), cmp.text(taskModel.getStoryPoints()).setStyle(norm20Style))
+						cmp.verticalList(cmp.text("Points:").setStyle(bold7Style), cmp.text(taskModel.getStoryPoints())
+						                                                              .setStyle(norm20Style(taskModel.getColor())))
 						   .setStyle(lineStyle))).setStyle(lineStyle);
 	}
 
@@ -75,6 +87,6 @@ public class EpicTaskCreator extends TaskReport {
 			StyleBuilder style = styleBuilders.style(styleBuilders.pen1Point()).setTextAlignment(HorizontalTextAlignment.CENTER, VerticalTextAlignment.MIDDLE);
 			return cmp.text("Blank Card").setStyle(style);
 		}
-		return cmp.verticalList(buildCardHeader(taskModel), buildDecription(taskModel)).setFixedWidth(cardWidth).setStyle(lineStyle);
+		return cmp.verticalList(buildCardHeader(taskModel), buildDecription(taskModel)).setFixedWidth(cardWidth).setFixedHeight(cardHeight).setStyle(lineStyle);
 	}
 }

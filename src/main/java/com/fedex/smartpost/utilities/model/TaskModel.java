@@ -1,5 +1,6 @@
 package com.fedex.smartpost.utilities.model;
 
+import java.awt.Color;
 import java.util.regex.Pattern;
 
 public class TaskModel implements Comparable {
@@ -19,6 +20,7 @@ public class TaskModel implements Comparable {
 	private String feature;
 	private String release;
 	private String assignedTo;
+	private Color color;
 
 	public TaskModel() {
 	}
@@ -137,6 +139,14 @@ public class TaskModel implements Comparable {
 
 	public void setAssignedTo(String assignedTo) {
 		this.assignedTo = assignedTo;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	@Override
