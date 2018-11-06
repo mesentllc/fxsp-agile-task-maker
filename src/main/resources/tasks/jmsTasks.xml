@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Root>
+	<Category>JMSTasks</Category>
+	<Tasks>
+		<Task>
+			<Description>Establish TOPIC/QUEUE name</Description>
+			<AcceptanceCriteria>Name follows EIT standards</AcceptanceCriteria>
+			<Duration>2</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Verify Connection Factory name</Description>
+			<AcceptanceCriteria>Name follows EIT standards</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Perform SUB Testing</Description>
+			<AcceptanceCriteria>Subscriber Testing Completed</AcceptanceCriteria>
+			<Duration>4</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Perform PUB Tesing</Description>
+			<AcceptanceCriteria>Publisher Testing Completed</AcceptanceCriteria>
+			<Duration>4</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Submit SRT to move to L4</Description>
+			<AcceptanceCriteria>Destination available in L4</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Submit SRT to move to PRD</Description>
+			<AcceptanceCriteria>Destination available in PRD</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+	</Tasks>
+</Root>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.fedex.smartpost.utilities</groupId>
+	<artifactId>agileTaskMaker</artifactId>
+	<version>2.2.1</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<transformers>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+							<!-- Console version -->
+							<!-- <mainClass>com.fedex.smartpost.utilities.AgileTaskMaker</mainClass> -->
+							<!-- Swing version -->
+							<mainClass>com.fedex.smartpost.utilities.MakeCards</mainClass>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+							<resource>jasperreports_extension.properties</resource>
+						</transformer>
+						<transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer"/>
+					</transformers>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>task-generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<args>
+								<arg>-no-header</arg>
+							</args>
+							<generateDirectory>src/main/java</generateDirectory>
+							<generatePackage>com.fedex.smartpost.utilities.types</generatePackage>
+							<schemaDirectory>src/main/resources/schema</schemaDirectory>
+							<bindingDirectory>src/main/resources/schema</bindingDirectory>
+							<includeBindings>
+								<includeBinding>*.xjb</includeBinding>
+							</includeBindings>
+							<extension>true</extension>
+							<episode>true</episode>
+							<strict>false</strict>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<!-- POI Dependencies -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.13</version>
+		</dependency>
+		<!-- Database Dependencies -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+		<!-- DynamicReports Dependencies -->
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-core</artifactId>
+			<version>5.1.0</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-beanutils</artifactId>
+					<groupId>commons-beanutils</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Now the question is if we really need these extra jars... I am thinking
+		that I needed the 2.1.7.js4 jar, but the others were added when I was looking
+		for a way to get the stand-alone to work - it turns out that I needed to add
+		the AppendingTransformer to allow SHADE to handle the multiple jasperreports_extension.properties
+		that are needed and exist in multiple locations.
+
+		Until the proxy allows, you need to d/l the itext2.1.7.js4.jar from
+		http://jasperreports.sourceforge.net/maven2/com/lowagie/itext/2.1.7.js3/
+		http://jasperreports.sourceforge.net/maven2/com/lowagie/itext/2.1.7.js4/
+		http://jasperreports.sourceforge.net/maven2/com/lowagie/itext/2.1.7.js6/
+		http://jaspersoft.artifactoryonline.com/jaspersoft/jaspersoft-repo/org/olap4j/olap4j/0.9.7.309-JS-3/
+
+		and install it locally.  It is a dependency for the dynamicreports-core
+
+		mvn install:install-file -Dfile=itext-2.1.7.js3.jar -DgroupId=com.lowagie -DartifactId=itext -Dversion=2.1.7.js3 -Dpackaging=jar -DgeneratePom=true
+		mvn install:install-file -Dfile=itext-2.1.7.js4.jar -DgroupId=com.lowagie -DartifactId=itext -Dversion=2.1.7.js4 -Dpackaging=jar -DgeneratePom=true
+		mvn install:install-file -Dfile=itext-2.1.7.js6.jar -DgroupId=com.lowagie -DartifactId=itext -Dversion=2.1.7.js6 -Dpackaging=jar -DgeneratePom=true
+		mvn install:install-file -Dfile=olap4j-0.9.7.309-JS-3.jar -DgroupId=org.olap4j -DartifactId=olap4j -Dversion=0.9.7.309-JS-3 -Dpackaging=jar -DgeneratePom=true
+		-->
+		<!-- Maybe we should try this library - DynamicJasper - Might be easier -->
+		<!--
+				<dependency>
+					<groupId>ar.com.fdvs</groupId>
+					<artifactId>DynamicJasper</artifactId>
+					<version>5.0.9</version>
+				</dependency>
+		-->
+		<!-- General Dependencies -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Root>
+	<Category>DBATasks</Category>
+	<Tasks>
+		<Task>
+			<Description>Create Yellow Card</Description>
+			<AcceptanceCriteria>Email Yellow Card to DBA</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Create Code Review Document</Description>
+			<AcceptanceCriteria/>
+			<Duration>4</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Complete RAPID Checklist</Description>
+			<AcceptanceCriteria>Checklist complete</AcceptanceCriteria>
+			<Duration>2</Duration>
+			<Type>Compliance</Type>
+		</Task>
+	</Tasks>
+</Root>

@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<Root>
+	<Category>CodingTasks</Category>
+	<Tasks>
+		<Task>
+			<Description>Code Cleanup/Refactoring</Description>
+			<AcceptanceCriteria>PMD/IDE Warnings reduced</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Code Cleanup/Refactoring/Punchlist</Description>
+			<AcceptanceCriteria>PMD/IDE Warnings reduced</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Update Spring Dependencies</Description>
+			<AcceptanceCriteria>Application using Spring 3/4</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Improve logging to new standards</Description>
+			<AcceptanceCriteria>Application follows new logging standards</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Update WebLogic Data Source Property Files</Description>
+			<AcceptanceCriteria>.property files converted to XML configuration files</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Update WebLogic JMS Property Files</Description>
+			<AcceptanceCriteria>.property files converted to XML configuration files</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Update FedEx Common Dependencies</Description>
+			<AcceptanceCriteria>Application latest FedEx Common components</AcceptanceCriteria>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Improve Exception Handling</Description>
+			<AcceptanceCriteria/>
+			<Duration/>
+			<Type>Coding</Type>
+		</Task>
+		<Task>
+			<Description>Setup application in Jenkins for L2 Auto-deploy</Description>
+			<AcceptanceCriteria>Application viewable on Jenkins and auto-deploys</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Complete RAPID Checklist</Description>
+			<AcceptanceCriteria>Checklist complete</AcceptanceCriteria>
+			<Duration>2</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Create Detailed Design Document</Description>
+			<AcceptanceCriteria>DDD complete and associated to CT</AcceptanceCriteria>
+			<Duration>2</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Create Install Instruction Document</Description>
+			<AcceptanceCriteria>Install Instruction complete and associated to CT</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Create Code Review Document</Description>
+			<AcceptanceCriteria>Code Review complete and associated to CT</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Perform Code Review</Description>
+			<AcceptanceCriteria>Code Review Completed</AcceptanceCriteria>
+			<Duration>2</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Submit SRT to deploy to L3/L4</Description>
+			<AcceptanceCriteria>Application deployed to L3/L4</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Send out Go/No Go Request</Description>
+			<AcceptanceCriteria>Go/No Go submitted</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Attach PIF</Description>
+			<AcceptanceCriteria>PIF created and attached to CT</AcceptanceCriteria>
+			<Duration>1</Duration>
+			<Type>Compliance</Type>
+		</Task>
+		<Task>
+			<Description>Create Unit Tests</Description>
+			<AcceptanceCriteria/>
+			<Duration/>
+			<Type>Testing</Type>
+		</Task>
+		<Task>
+			<Description>Create Acceptance Tests</Description>
+			<AcceptanceCriteria/>
+			<Duration/>
+			<Type>Testing</Type>
+		</Task>
+		<Task>
+			<Description>Create AppD Information Points</Description>
+			<AcceptanceCriteria/>
+			<Duration/>
+			<Type>Testing</Type>
+		</Task>
+		<Task>
+			<Description>Add AppD Information Points to Dashboard</Description>
+			<AcceptanceCriteria/>
+			<Duration/>
+			<Type>Testing</Type>
+		</Task>
+	</Tasks>
+</Root>
