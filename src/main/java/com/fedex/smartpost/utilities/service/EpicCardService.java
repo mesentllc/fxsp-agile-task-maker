@@ -28,10 +28,10 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class EpicCardService extends CardService {
 	private static final Log log = LogFactory.getLog(EpicCardService.class);
-	private static final Color[] COLORS = {Color.RED, new Color(255,128,0), new Color(102, 102, 0),
-		new Color(128,255,0), new Color(0,255,0), new Color(0,255,128), new Color(0,255,255),
-		new Color(0,128,255), new Color(0,0,255), new Color(127,0,255), new Color(255, 0, 255),
-		new Color(255,0,127), new Color(128,128,128)};
+	private static final Color[] COLORS = {Color.YELLOW, Color.ORANGE, new Color(102, 255, 102),
+		new Color(102,178,255), new Color(192,192,192), new Color(178,102,255), Color.WHITE,
+		Color.RED, Color.BLACK, new Color(0,102,0), new Color(102, 51, 0),
+		new Color(204,0,204), new Color(153,0,76)};
 
 	@Override
 	public void process(String inFile, String outFile) throws IOException, InvalidFormatException, DRException {
@@ -69,19 +69,19 @@ public class EpicCardService extends CardService {
 	}
 
 	private void addToMap(Map<String, Integer> colorSet, String epic) {
-		if (colorSet.get(epic) != null) {
+		if (colorSet.get(epic.trim()) != null) {
 			return;
 		}
-		colorSet.put(epic, colorSet.size());
+		colorSet.put(epic.trim(), colorSet.size());
 	}
 
 	private void setTaskColor(TaskModel taskModel, Map<String, Integer> colorSet) {
-		int pntr = colorSet.get(taskModel.getEpic());
+		int pntr = colorSet.get(taskModel.getEpic().trim());
 		if (pntr < COLORS.length) {
 			taskModel.setColor(COLORS[pntr]);
 		}
 		else {
-			taskModel.setColor(Color.BLACK);
+			taskModel.setColor(Color.WHITE);
 		}
 	}
 

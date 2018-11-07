@@ -7,6 +7,7 @@ import java.awt.Color;
 import com.fedex.smartpost.utilities.model.TaskModel;
 import net.sf.dynamicreports.report.builder.DynamicReports;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
+import net.sf.dynamicreports.report.builder.style.ReportStyleBuilder;
 import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.dynamicreports.report.constant.HorizontalTextAlignment;
 import net.sf.dynamicreports.report.constant.VerticalTextAlignment;
@@ -15,12 +16,19 @@ public class EpicTaskCreator extends TaskReport {
 	private static final StyleBuilder lineStyle = styleBuilders.style(styleBuilders.pen1Point()).bold().setFontSize(7);
 	private static final Integer headerWidth = cardWidth * 6 / 10;
 
-	private StyleBuilder norm20Style(Color color) {
-		if (color == null) {
-			color = Color.BLACK;
+	private StyleBuilder boldBgColorStyle(Color color) {
+		if (color == Color.BLACK) {
+			return DynamicReports.stl.style(lineStyle).setTextAlignment(HorizontalTextAlignment.LEFT, VerticalTextAlignment.TOP)
+			                         .setPadding(2).setBackgroundColor(color).setForegroundColor(Color.WHITE);
 		}
+		return DynamicReports.stl.style(lineStyle).setTextAlignment(HorizontalTextAlignment.LEFT, VerticalTextAlignment.TOP)
+		                         .setPadding(2).setBackgroundColor(color);
+	}
+
+	private StyleBuilder norm20Style() {
 		return DynamicReports.stl.style(styleBuilders.style()).setFontSize(20)
-		                         .setTextAlignment(HorizontalTextAlignment.CENTER, VerticalTextAlignment.TOP).setPadding(2).setForegroundColor(color);
+		                         .setTextAlignment(HorizontalTextAlignment.CENTER, VerticalTextAlignment.TOP)
+		                         .setPadding(2).setForegroundColor(Color.BLACK);
 	}
 
 	private ComponentBuilder<?, ?> buildLine1(TaskModel taskModel) {
@@ -31,8 +39,8 @@ public class EpicTaskCreator extends TaskReport {
 	}
 
 	private ComponentBuilder<?, ?> buildLine2(TaskModel taskModel) {
-		return cmp.horizontalList(cmp.text("Feature:\n" + " " + getString(taskModel.getFeature())).setStyle(bold7Style)
-						.setFixedWidth(headerWidth).setStyle(lineStyle),
+		return cmp.horizontalList(cmp.text("Feature:\n" + " " + getString(taskModel.getFeature()))
+						.setFixedWidth(headerWidth).setStyle(boldBgColorStyle(taskModel.getColor())),
 				cmp.verticalList(cmp.text("Assigned To:\n" + getString(taskModel.getAssignedTo())).setStyle(bold7Style))
 						.setStyle(bold7Style)).setStyle(lineStyle);
 	}
@@ -42,7 +50,7 @@ public class EpicTaskCreator extends TaskReport {
 						.setStyle(lineStyle).setFixedWidth(headerWidth),
 				cmp.horizontalList(cmp.text("Id:\n" + getString(taskModel.getUserStoryId())).setStyle(bold7Style),
 						cmp.verticalList(cmp.text("Points:").setStyle(bold7Style), cmp.text(taskModel.getStoryPoints())
-						                                                              .setStyle(norm20Style(taskModel.getColor())))
+						                                                              .setStyle(norm20Style()))
 						   .setStyle(lineStyle))).setStyle(lineStyle);
 	}
 
