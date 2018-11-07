@@ -137,11 +137,19 @@ public abstract class TaskReport {
 		return string;
 	}
 
-	public JasperReportBuilder buildCards(List<TaskModel> tasks) throws DRException, FileNotFoundException {
+	public JasperReportBuilder buildCards(List<TaskModel> tasks) {
 		MultiPageListBuilder multiPageList = cmp.multiPageList();
 		List<ComponentBuilder<?, ?>> cards = new ArrayList<>(4);
+		boolean largeCardSeen = false;
+
 		for (TaskModel task : tasks) {
-			if (cards.size() == 4) {
+			if (task.getDescription().length() > 250) {
+				largeCardSeen = true;
+			}
+			if (cards.size() == 4 || (cards.size() > 1 && largeCardSeen)) {
+				while (cards.size() < 4) {
+					cards.add(buildCard(null));
+				}
 				multiPageList.add(cmp.verticalGap(10),
 						cmp.horizontalList(cmp.horizontalGap(5), cards.get(0), cmp.horizontalGap(20), cards.get(1)),
 						cmp.verticalGap(20),
@@ -149,6 +157,12 @@ public abstract class TaskReport {
 				cards = new ArrayList<>(4);
 			}
 			cards.add(buildCard(task));
+			if (cards.size() == 2) {
+				multiPageList.add(cmp.verticalGap(10),
+				                  cmp.horizontalList(cmp.horizontalGap(5), cards.get(0), cmp.horizontalGap(20), cards.get(1)));
+				cards = new ArrayList<>(4);
+				largeCardSeen = false;
+			}
 		}
 		if (!cards.isEmpty()) {
 			while (cards.size() < 4) {

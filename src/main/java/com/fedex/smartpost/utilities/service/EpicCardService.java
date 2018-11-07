@@ -69,6 +69,9 @@ public class EpicCardService extends CardService {
 	}
 
 	private void addToMap(Map<String, Integer> colorSet, String epic) {
+		if (epic == null) {
+			epic = "";
+		}
 		if (colorSet.get(epic.trim()) != null) {
 			return;
 		}
@@ -76,7 +79,11 @@ public class EpicCardService extends CardService {
 	}
 
 	private void setTaskColor(TaskModel taskModel, Map<String, Integer> colorSet) {
-		int pntr = colorSet.get(taskModel.getEpic().trim());
+		String epic = taskModel.getEpic();
+		if (epic == null) {
+			epic = "";
+		}
+		int pntr = colorSet.get(epic.trim());
 		if (pntr < COLORS.length) {
 			taskModel.setColor(COLORS[pntr]);
 		}
