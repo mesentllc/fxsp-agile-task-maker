@@ -1,14 +1,28 @@
 package com.fedex.smartpost.utilities.report;
 
 import com.fedex.smartpost.utilities.model.TaskModel;
+import net.sf.dynamicreports.report.builder.DynamicReports;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
 import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.dynamicreports.report.constant.HorizontalTextAlignment;
 import net.sf.dynamicreports.report.constant.VerticalTextAlignment;
 
+import java.awt.Color;
+
 import static net.sf.dynamicreports.report.builder.DynamicReports.cmp;
 
 public class FeatureTaskCreator extends TaskReport {
+	private static final StyleBuilder lineStyle = styleBuilders.style(styleBuilders.pen1Point()).bold().setFontSize(7);
+
+	private StyleBuilder boldBgColorStyle(Color color) {
+		if (color == Color.BLACK) {
+			return DynamicReports.stl.style(lineStyle).setTextAlignment(HorizontalTextAlignment.LEFT, VerticalTextAlignment.TOP)
+			                         .setPadding(2).setBackgroundColor(color).setForegroundColor(Color.WHITE);
+		}
+		return DynamicReports.stl.style(lineStyle).setTextAlignment(HorizontalTextAlignment.LEFT, VerticalTextAlignment.TOP)
+		                         .setPadding(2).setBackgroundColor(color);
+	}
+
 	private ComponentBuilder<?, ?> buildSuccessCriteria(TaskModel taskModel) {
 		StyleBuilder style = styleBuilders.style(styleBuilders.pen1Point());
 		Integer sectionHeight = cardHeight * 2 / 4;
@@ -40,7 +54,7 @@ public class FeatureTaskCreator extends TaskReport {
 		Integer headerWidth = cardWidth * 9 / 10;
 		return cmp.horizontalList(cmp.verticalList(cmp.text("ID: " + getString(taskModel.getUserStoryId()) + "\nFeature: " +
 				getString(taskModel.getUserStoryTitle())).setStyle(bold10Style))
-				.setFixedWidth(headerWidth), cmp.verticalList(cmp.text("Points\n" + getString(taskModel.getStoryPoints())).setStyle(lineStyle)
+				.setFixedWidth(headerWidth).setStyle(boldBgColorStyle(taskModel.getColor())), cmp.verticalList(cmp.text("Points\n" + getString(taskModel.getStoryPoints())).setStyle(lineStyle)
 				.setHorizontalTextAlignment(HorizontalTextAlignment.CENTER)))
 				.setFixedHeight(headerHeight);
 	}
