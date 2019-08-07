@@ -6,7 +6,7 @@
 package com.fedex.smartpost.utilities;
 
 import com.fedex.smartpost.utilities.service.AGMCardService;
-import com.fedex.smartpost.utilities.service.CardService;
+import com.fedex.smartpost.utilities.service.ExcelCardService;
 import com.fedex.smartpost.utilities.service.EpicCardService;
 import com.fedex.smartpost.utilities.service.FeatureCardService;
 import com.fedex.smartpost.utilities.service.V1CardService;
@@ -219,7 +219,7 @@ public class MakeCards extends JFrame {
 	}//GEN-LAST:event_txtOutputFileKeyReleased
 
 	private void btnProcessActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-		CardService cardService = null;
+		ExcelCardService cardService = null;
 		if (rbVersion1.isSelected()) {
 			cardService = new V1CardService();
 		}

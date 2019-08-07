@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class V1CardService extends CardService {
+public class V1CardService extends ExcelCardService {
 	private static final Logger logger = Logger.getLogger(V1CardService.class);
 
 	@Override

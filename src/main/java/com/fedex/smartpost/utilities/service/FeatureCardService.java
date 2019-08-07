@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class FeatureCardService extends CardService {
+public class FeatureCardService extends ExcelCardService {
 	private static final Logger logger = Logger.getLogger(FeatureCardService.class);
 
 	@Override

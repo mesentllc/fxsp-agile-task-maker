@@ -21,7 +21,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-public class AGMCardService extends CardService {
+public class AGMCardService extends ExcelCardService {
 	private static final Logger logger = Logger.getLogger(AGMCardService.class);
 	private JFrame parent;
 

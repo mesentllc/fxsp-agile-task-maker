@@ -12,7 +12,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 
-public abstract class CardService {
+public abstract class ExcelCardService {
 	protected String[] columnNames = null;
 
 	public abstract void process(String inFile, String outFile) throws IOException, InvalidFormatException, DRException;

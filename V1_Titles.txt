@@ -1,0 +1,38 @@
+Blocked
+Class of Service
+ID
+Title
+Iteration
+Portfolio Item
+Status
+Estimate Pts.
+Planning Level
+Description
+Order
+Service Class
+Acceptance Criteria (Backlog Item)
+Owner
+Backlog
+Backlog Group
+Backlog Item Status
+Business Priority
+Change Date
+Closed Date
+Code Complexity Rank (0-100):
+Complexity
+Create Date
+Date Completed
+Detail Estimate Hrs.
+Done Hrs.
+Downstream Dependencies
+Iteration State
+Objectives
+Planned Estimate Pts.
+Product Owner
+Split From
+Split From ID
+Tags
+Team
+To Do Hrs.
+Type
+Upstream Dependencies
